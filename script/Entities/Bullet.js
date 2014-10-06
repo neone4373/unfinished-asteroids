@@ -7,6 +7,8 @@ ENGINE.Bullet = function(args) {
     lifespan: 2
   }, args);
 
+  this.sprite = this.sprites[this.team];
+
   this.radius = 3;
 
 };
@@ -18,6 +20,11 @@ ENGINE.Bullet.prototype = {
   zIndex: 3,
 
   collidable: true,
+
+  sprites: [
+    [16, 52, 20, 10],
+    [30, 52, 20, 10],
+  ],
 
   collision: function(entity) {
 
@@ -49,8 +56,12 @@ ENGINE.Bullet.prototype = {
   },
 
   render: function() {
+    //  Old code for white rectagle
+    // app.layer.fillStyle("#fff").fillRect(this.x - 4, this.y - 4, 8, 8);
 
-    app.layer.fillStyle("#fff").fillRect(this.x - 4, this.y - 4, 8, 8);
+    // app.layer.clear("#484857")
+
+    app.layer.drawRegion(app.images.spritesheet, this.sprite, this.x, this.y)
 
   }
 
